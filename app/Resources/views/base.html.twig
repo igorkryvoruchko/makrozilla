@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}MakroZilla{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets 'bundles/show/css/*' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body onload="width()">
+        <ul>
+            <li><a href="{{ path('home') }}">Monitoring</a></li>
+            <li><a href="{{ path('support') }}">Support</a></li>
+        </ul>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts '@ShowBundle/Resources/public/js/*' %}
+            <script src="{{ asset_url }}"></script>
+            <script>
+                new Clipboard('pre+button');
+            </script>
+            {% endjavascripts %}
+        {% endblock %}
+
+
+    </body>
+</html>
